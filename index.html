@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>全球云服务器总代理</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			:root {
+				--primary-gradient: linear-gradient(120deg, #667eea 0%, #764ba2 100%);
+				--secondary-gradient: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+				--accent-gradient: linear-gradient(120deg, #4facfe 0%, #00f2fe 100%);
+				--success-gradient: linear-gradient(120deg, #43e97b 0%, #38f9d7 100%);
+				--warning-gradient: linear-gradient(120deg, #fa709a 0%, #fee140 100%);
+				--text-primary: #2d3748;
+				--text-secondary: #718096;
+				--bg-light: #f7fafc;
+				--bg-white: #ffffff;
+				--border-color: #e2e8f0;
+				--shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+				--shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+				--shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+				--border-radius: 20px;
+				--border-radius-sm: 12px;
+				--transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+			}
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+				line-height: 1.7;
+				color: var(--text-primary);
+				background: var(--bg-light);
+				overflow-x: hidden;
+			}
+
+			/* Typography */
+			h1,
+			h2,
+			h3 {
+				font-weight: 700;
+				letter-spacing: -0.025em;
+			}
+
+			h1 {
+				font-size: clamp(2.5rem, 5vw, 4rem);
+			}
+
+			h2 {
+				font-size: clamp(2rem, 4vw, 3rem);
+			}
+
+			h3 {
+				font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+			}
+
+			.container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 1.5rem;
+			}
+
+			/* Header */
+			.header {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				background: rgba(255, 255, 255, 0.95);
+				backdrop-filter: blur(20px);
+				border-bottom: 1px solid var(--border-color);
+				z-index: 1000;
+				transition: var(--transition);
+			}
+
+			.navbar {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 1.25rem 0;
+			}
+
+			.logo {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+				font-size: 1.5rem;
+				font-weight: 800;
+				background: var(--primary-gradient);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+
+			.logo-icon {
+				width: 40px;
+				height: 40px;
+				background: var(--primary-gradient);
+				border-radius: var(--border-radius-sm);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: white;
+				font-size: 1.25rem;
+			}
+
+			.nav-menu {
+				display: flex;
+				list-style: none;
+				gap: 2rem;
+				margin: 0;
+			}
+
+			.nav-link {
+				text-decoration: none;
+				color: var(--text-secondary);
+				font-weight: 500;
+				transition: var(--transition);
+				position: relative;
+			}
+
+			.nav-link:hover {
+				color: var(--text-primary);
+			}
+
+			.nav-link::after {
+				content: '';
+				position: absolute;
+				bottom: -4px;
+				left: 0;
+				width: 0;
+				height: 2px;
+				background: var(--primary-gradient);
+				transition: var(--transition);
+			}
+
+			.nav-link:hover::after {
+				width: 100%;
+			}
+
+			.mobile-menu-btn {
+				display: none;
+				flex-direction: column;
+				gap: 4px;
+				background: none;
+				border: none;
+				cursor: pointer;
+				padding: 8px;
+			}
+
+			.mobile-menu-btn span {
+				width: 24px;
+				height: 3px;
+				background: var(--text-primary);
+				border-radius: 2px;
+				transition: var(--transition);
+			}
+
+			/* Hero Section */
+			.hero {
+				background: var(--bg-white);
+				padding: 8rem 0 4rem;
+				margin-top: 80px;
+				overflow: hidden;
+				position: relative;
+			}
+
+			.hero::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background:
+					radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+					radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+				z-index: 1;
+			}
+
+			.hero-content {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 4rem;
+				align-items: center;
+				position: relative;
+				z-index: 2;
+			}
+
+			.hero-text h1 {
+				margin-bottom: 1.5rem;
+				background: var(--primary-gradient);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+
+			.hero-subtitle {
+				font-size: 1.25rem;
+				color: var(--text-secondary);
+				margin-bottom: 2rem;
+				line-height: 1.6;
+			}
+
+			.hero-cta {
+				display: flex;
+				gap: 1rem;
+				flex-wrap: wrap;
+				margin-bottom: 3rem;
+			}
+
+			.hero-visual {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: relative;
+			}
+
+			.cloud-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1.5rem;
+				max-width: 400px;
+			}
+
+			.cloud-item {
+				width: 100px;
+				height: 100px;
+				background: var(--bg-white);
+				border-radius: var(--border-radius);
+				box-shadow: var(--shadow-md);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				transition: var(--transition);
+				border: 2px solid var(--border-color);
+				position: relative;
+				overflow: hidden;
+			}
+
+			.cloud-item::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: -100%;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+				transition: left 0.6s;
+			}
+
+			.cloud-item:hover::before {
+				left: 100%;
+			}
+
+			.cloud-item:hover {
+				transform: translateY(-8px) scale(1.05);
+				box-shadow: var(--shadow-lg);
+			}
+
+			.cloud-item:nth-child(1) {
+				animation: float 6s ease-in-out infinite;
+			}
+
+			.cloud-item:nth-child(2) {
+				animation: float 6s ease-in-out infinite 1s;
+			}
+
+			.cloud-item:nth-child(3) {
+				animation: float 6s ease-in-out infinite 2s;
+			}
+
+			.cloud-item:nth-child(4) {
+				animation: float 6s ease-in-out infinite 3s;
+			}
+
+			.cloud-item:nth-child(5) {
+				animation: float 6s ease-in-out infinite 4s;
+			}
+
+			@keyframes float {
+
+				0%,
+				100% {
+					transform: translateY(0px);
+				}
+
+				50% {
+					transform: translateY(-15px);
+				}
+			}
+
+			.cloud-logo {
+				width: 50px;
+				height: 35px;
+				border-radius: 8px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: white;
+				font-weight: 700;
+				font-size: 0.75rem;
+				margin-bottom: 0.5rem;
+			}
+
+			.cloud-name {
+				font-size: 0.7rem;
+				font-weight: 600;
+				color: var(--text-secondary);
+				text-align: center;
+			}
+
+			/* Buttons */
+			.btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 1rem 2rem;
+				border: none;
+				border-radius: 50px;
+				font-size: 1rem;
+				font-weight: 600;
+				text-decoration: none;
+				cursor: pointer;
+				transition: var(--transition);
+				position: relative;
+				overflow: hidden;
+			}
+
+			.btn::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+				transform: translateX(-100%);
+				transition: transform 0.6s;
+			}
+
+			.btn:hover::before {
+				transform: translateX(100%);
+			}
+
+			.btn-primary {
+				background: var(--primary-gradient);
+				color: white;
+				box-shadow: var(--shadow-md);
+			}
+
+			.btn-primary:hover {
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-lg);
+			}
+
+			.btn-secondary {
+				background: var(--bg-white);
+				color: var(--text-primary);
+				border: 2px solid var(--border-color);
+				box-shadow: var(--shadow-sm);
+			}
+
+			.btn-secondary:hover {
+				transform: translateY(-2px);
+				border-color: #667eea;
+				box-shadow: var(--shadow-md);
+			}
+
+			/* Services Section */
+			.services {
+				padding: 6rem 0;
+				background: var(--bg-white);
+			}
+
+			.section-header {
+				text-align: center;
+				margin-bottom: 4rem;
+			}
+
+			.section-title {
+				margin-bottom: 1rem;
+			}
+
+			.section-subtitle {
+				font-size: 1.25rem;
+				color: var(--text-secondary);
+				max-width: 600px;
+				margin: 0 auto;
+			}
+
+			.services-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 2rem;
+			}
+
+			.service-card {
+				background: var(--bg-white);
+				padding: 2.5rem;
+				border-radius: var(--border-radius);
+				box-shadow: var(--shadow-sm);
+				border: 1px solid var(--border-color);
+				transition: var(--transition);
+				position: relative;
+				overflow: hidden;
+			}
+
+			.service-card::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 4px;
+				background: var(--primary-gradient);
+				transform: scaleX(0);
+				transition: var(--transition);
+			}
+
+			.service-card:hover::before {
+				transform: scaleX(1);
+			}
+
+			.service-card:hover {
+				transform: translateY(-8px);
+				box-shadow: var(--shadow-lg);
+			}
+
+			.service-icon {
+				width: 80px;
+				height: 80px;
+				border-radius: var(--border-radius);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 2rem;
+				margin-bottom: 1.5rem;
+				position: relative;
+			}
+
+			.service-card:nth-child(1) .service-icon {
+				background: var(--primary-gradient);
+			}
+
+			.service-card:nth-child(2) .service-icon {
+				background: var(--secondary-gradient);
+			}
+
+			.service-card:nth-child(3) .service-icon {
+				background: var(--accent-gradient);
+			}
+
+			.service-card:nth-child(4) .service-icon {
+				background: var(--success-gradient);
+			}
+
+			.service-title {
+				margin-bottom: 1rem;
+				color: var(--text-primary);
+			}
+
+			.service-description {
+				color: var(--text-secondary);
+				line-height: 1.6;
+			}
+
+			/* Providers Section */
+			.providers {
+				padding: 6rem 0;
+				background: var(--bg-light);
+			}
+
+			.providers-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+				gap: 2rem;
+			}
+
+			.provider-card {
+				background: var(--bg-white);
+				padding: 2rem;
+				border-radius: var(--border-radius);
+				text-align: center;
+				box-shadow: var(--shadow-sm);
+				border: 1px solid var(--border-color);
+				transition: var(--transition);
+				position: relative;
+				overflow: hidden;
+			}
+
+			.provider-card::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: var(--primary-gradient);
+				opacity: 0;
+				transition: var(--transition);
+				z-index: 1;
+			}
+
+			.provider-card:hover::after {
+				opacity: 0.05;
+			}
+
+			.provider-card:hover {
+				transform: translateY(-10px) scale(1.02);
+				box-shadow: var(--shadow-lg);
+			}
+
+			.provider-logo {
+				width: 100px;
+				height: 70px;
+				margin: 0 auto 1.5rem;
+				border-radius: var(--border-radius-sm);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+				z-index: 2;
+			}
+
+			.provider-title {
+				margin-bottom: 1rem;
+				position: relative;
+				z-index: 2;
+			}
+
+			.provider-description {
+				color: var(--text-secondary);
+				margin-bottom: 1.5rem;
+				position: relative;
+				z-index: 2;
+			}
+
+			/* Process Section */
+			.process {
+				padding: 6rem 0;
+				background: var(--bg-white);
+			}
+
+			.process-container {
+				max-width: 1000px;
+				margin: 0 auto;
+			}
+
+			.process-steps {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+				gap: 3rem;
+				margin-top: 4rem;
+			}
+
+			.process-step {
+				text-align: center;
+				position: relative;
+			}
+
+			.step-number {
+				width: 80px;
+				height: 80px;
+				background: var(--primary-gradient);
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.5rem;
+				font-weight: 700;
+				color: white;
+				margin: 0 auto 1.5rem;
+				box-shadow: var(--shadow-md);
+				position: relative;
+				z-index: 2;
+			}
+
+			.step-title {
+				margin-bottom: 1rem;
+				color: var(--text-primary);
+			}
+
+			.step-description {
+				color: var(--text-secondary);
+				line-height: 1.6;
+			}
+
+			/* Features Section */
+			.features {
+				padding: 6rem 0;
+				background: #fff;
+			}
+
+			.features-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+				gap: 3rem;
+			}
+
+			.feature-item {
+				display: flex;
+				gap: 1.5rem;
+				align-items: flex-start;
+			}
+
+			.feature-icon {
+				width: 60px;
+				height: 60px;
+				background: var(--accent-gradient);
+				border-radius: var(--border-radius-sm);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: white;
+				font-size: 1.5rem;
+				flex-shrink: 0;
+				box-shadow: var(--shadow-sm);
+			}
+
+			.feature-content h3 {
+				margin-bottom: 0.75rem;
+				color: var(--text-primary);
+			}
+
+			.feature-content p {
+				color: var(--text-secondary);
+				line-height: 1.6;
+			}
+
+			/* Payment Section */
+			.payment {
+				padding: 4rem 0;
+				background: var(--bg-white);
+				text-align: center;
+			}
+
+			.payment-methods {
+				display: flex;
+				justify-content: center;
+				gap: 2rem;
+				flex-wrap: wrap;
+				margin-top: 3rem;
+			}
+
+			.payment-method {
+				width: 100px;
+				height: 60px;
+				background: var(--bg-light);
+				border: 2px solid var(--border-color);
+				border-radius: var(--border-radius-sm);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: var(--transition);
+			}
+
+			.payment-method:hover {
+				transform: translateY(-4px);
+				box-shadow: var(--shadow-md);
+				border-color: #667eea;
+			}
+
+			/* Network Section */
+			.network {
+				padding: 6rem 0;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				text-align: center;
+			}
+
+			.network-stats {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+				gap: 3rem;
+				margin-top: 4rem;
+			}
+
+			.stat-item {
+				text-align: center;
+			}
+
+			.stat-number {
+				font-size: 3.5rem;
+				font-weight: 700;
+				margin-bottom: 0.5rem;
+				background: linear-gradient(45deg, #fff, #f0f9ff);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+
+			.stat-label {
+				font-size: 1.1rem;
+				opacity: 0.9;
+			}
+
+			/* CTA Section */
+			.cta-section {
+				padding: 6rem 0;
+				background: var(--bg-white);
+				text-align: center;
+			}
+
+			.cta-content {
+				max-width: 800px;
+				margin: 0 auto;
+			}
+
+			.cta-title {
+				margin-bottom: 1.5rem;
+			}
+
+			.cta-description {
+				font-size: 1.25rem;
+				color: var(--text-secondary);
+				margin-bottom: 3rem;
+			}
+
+			.cta-buttons {
+				display: flex;
+				justify-content: center;
+				gap: 1.5rem;
+				flex-wrap: wrap;
+			}
+
+			/* Footer */
+			.footer {
+				background: #2d3748;
+				color: white;
+				padding: 4rem 0 2rem;
+			}
+
+			.footer-content {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+				gap: 3rem;
+				margin-bottom: 3rem;
+			}
+
+			.footer-section h3 {
+				margin-bottom: 1.5rem;
+				background: var(--accent-gradient);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+
+			.footer-section ul {
+				list-style: none;
+			}
+
+			.footer-section ul li {
+				margin-bottom: 0.75rem;
+			}
+
+			.footer-section ul li a {
+				color: #a0aec0;
+				text-decoration: none;
+				transition: var(--transition);
+			}
+
+			.footer-section ul li a:hover {
+				color: white;
+			}
+
+			.footer-bottom {
+				text-align: center;
+				color: #a0aec0;
+			}
+
+			/* Responsive Design */
+			@media (max-width: 768px) {
+				.nav-menu {
+					display: none;
+				}
+
+				.mobile-menu-btn {
+					display: flex;
+				}
+
+				.hero-content {
+					grid-template-columns: 1fr;
+					gap: 3rem;
+					text-align: center;
+				}
+
+				.hero-cta {
+					justify-content: center;
+				}
+
+				.cloud-grid {
+					grid-template-columns: repeat(2, 1fr);
+					max-width: 250px;
+				}
+
+				.process-steps {
+					grid-template-columns: 1fr;
+					gap: 2rem;
+				}
+
+				.features-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.feature-item {
+					text-align: center;
+					flex-direction: column;
+					align-items: center;
+				}
+
+				.payment-methods {
+					gap: 1rem;
+				}
+
+				.payment-method {
+					width: 80px;
+					height: 50px;
+				}
+
+				.cta-buttons {
+					flex-direction: column;
+					align-items: center;
+				}
+
+				.btn {
+					width: 100%;
+					max-width: 300px;
+					justify-content: center;
+				}
+			}
+
+			@media (max-width: 480px) {
+				.container {
+					padding: 0 1rem;
+				}
+				.services-grid,
+				.providers-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.network-stats {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Header -->
+		<header class="header">
+			<div class="container">
+				<nav class="navbar">
+					<img src="static/img/logo.png" alt="鹰雀云" class="logo">
+					<ul class="nav-menu">
+						<li><a href="#home" class="nav-link">首页</a></li>
+						<li><a href="#services" class="nav-link">服务</a></li>
+						<li><a href="#providers" class="nav-link">云平台</a></li>
+						<li><a href="#contact" class="nav-link">联系</a></li>
+					</ul>
+					<button class="mobile-menu-btn">
+						<span></span>
+						<span></span>
+						<span></span>
+					</button>
+				</nav>
+			</div>
+		</header>
+
+		<!-- Hero Section -->
+		<section class="hero" id="home">
+			<div class="container">
+				<div class="hero-content">
+					<div class="hero-text">
+						<h1>专业的全球云服务器代理商</h1>
+						<p class="hero-subtitle">一站式云服务解决方案，支持阿里云、腾讯云、AWS、Google Cloud、Azure等主流云平台，免实名免费开户、支持U支付、支持所有的行业</p>
+						<div class="hero-cta">
+							<a href="https://t.me/asbartley" class="btn btn-primary" target="_blank">
+								📱 Telegram联系
+							</a>
+							<a href="https://wa.me/85264644789" class="btn btn-secondary" target="_blank">
+								💬 WhatsApp联系
+							</a>
+						</div>
+					</div>
+					<div class="hero-visual">
+						<div class="cloud-grid">
+							<div class="cloud-item">
+								<div class="cloud-logo" style="background: #FF6A00;">阿里</div>
+								<div class="cloud-name">阿里云国际</div>
+							</div>
+							<div class="cloud-item">
+								<div class="cloud-logo" style="background: #006EFF;">腾讯</div>
+								<div class="cloud-name">腾讯云国际</div>
+							</div>
+							<div class="cloud-item">
+								<div class="cloud-logo" style="background: #FF9900;">AWS</div>
+								<div class="cloud-name">亚马逊云</div>
+							</div>
+							<div class="cloud-item">
+								<div class="cloud-logo" style="background: #4285F4;">谷歌</div>
+								<div class="cloud-name">谷歌云</div>
+							</div>
+							<div class="cloud-item">
+								<div class="cloud-logo" style="background: #0078D4;">Azure</div>
+								<div class="cloud-name">微软云</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Services Section -->
+		<section class="services" id="services">
+			<div class="container">
+				<div class="section-header">
+					<h2 class="section-title">全球云服务器代理服务</h2>
+					<p class="section-subtitle">为您提供专业、可靠的云服务器解决方案</p>
+				</div>
+				<div class="services-grid">
+					<div class="service-card">
+						<div class="service-icon">🌐</div>
+						<h3 class="service-title">多云平台整合</h3>
+						<p class="service-description">整合阿里云、腾讯云、AWS、Google Cloud、Azure等主流云平台</p>
+					</div>
+					<div class="service-card">
+						<div class="service-icon">⚡</div>
+						<h3 class="service-title">快速部署</h3>
+						<p class="service-description">一键部署云服务器，支持多种操作系统和应用环境，快速上线业务</p>
+					</div>
+					<div class="service-card">
+						<div class="service-icon">🛡️</div>
+						<h3 class="service-title">安全防护</h3>
+						<p class="service-description">提供DDoS防护、Web应用防火墙、数据加密等多层安全防护方案</p>
+					</div>
+					<div class="service-card">
+						<div class="service-icon">📊</div>
+						<h3 class="service-title">监控运维</h3>
+						<p class="service-description">7x24小时监控服务，实时性能监测，故障快速响应和处理</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Providers Section -->
+		<section class="providers" id="providers">
+			<div class="container">
+				<div class="section-header">
+					<h2 class="section-title">支持的云服务商</h2>
+					<p class="section-subtitle">与全球顶级云服务商深度合作</p>
+				</div>
+				<div class="providers-grid">
+					<div class="provider-card">
+						<div class="provider-logo" style="background: #FF6A00; color: white;">
+							<strong>阿里云</strong>
+						</div>
+						<h3 class="provider-title">阿里云国际</h3>
+						<p class="provider-description">领先的云计算服务商</p>
+					</div>
+					<div class="provider-card">
+						<div class="provider-logo" style="background: #006EFF; color: white;">
+							<strong>腾讯云</strong>
+						</div>
+						<h3 class="provider-title">腾讯云国际</h3>
+						<p class="provider-description">专业的云计算综合服务商</p>
+					</div>
+					<div class="provider-card">
+						<div class="provider-logo" style="background: #FF9900; color: white;">
+							<strong>AWS</strong>
+						</div>
+						<h3 class="provider-title">亚马逊云</h3>
+						<p class="provider-description">全球最大的云服务提供商</p>
+					</div>
+					<div class="provider-card">
+						<div class="provider-logo" style="background: #4285F4; color: white;">
+							<strong>Google</strong>
+						</div>
+						<h3 class="provider-title">谷歌云</h3>
+						<p class="provider-description">创新的云计算和AI服务</p>
+					</div>
+					<div class="provider-card">
+						<div class="provider-logo" style="background: #0078D4; color: white;">
+							<strong>Azure</strong>
+						</div>
+						<h3 class="provider-title">微软云</h3>
+						<p class="provider-description">企业级云计算平台</p>
+					</div>
+					<div class="provider-card">
+						<div class="provider-logo" style="background: #1DB954; color: white;">
+							<strong>其他</strong>
+						</div>
+						<h3 class="provider-title">其他平台</h3>
+						<p class="provider-description">支持更多云服务商接入</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Features Section -->
+		<section class="features" id="features">
+			<div class="container">
+				<div class="section-header">
+					<h2 class="section-title">核心优势</h2>
+					<p class="section-subtitle">为什么选择我们的云服务器代理服务</p>
+				</div>
+				<div class="features-grid">
+					<div class="feature-item">
+						<div class="feature-icon">💰</div>
+						<div class="feature-content">
+							<h3>价格优势</h3>
+							<p>直接对接云服务商，享受批量采购优惠价格，为您节省更多成本</p>
+						</div>
+					</div>
+					<div class="feature-item">
+						<div class="feature-icon">🔒</div>
+						<div class="feature-content">
+							<h3>安全可靠</h3>
+							<p>多重安全防护机制，数据加密传输，确保您的业务数据安全</p>
+						</div>
+					</div>
+					<div class="feature-item">
+						<div class="feature-icon">🚀</div>
+						<div class="feature-content">
+							<h3>快速部署</h3>
+							<p>自动化部署流程，5分钟内完成服务器配置和应用部署</p>
+						</div>
+					</div>
+					<div class="feature-item">
+						<div class="feature-icon">🛠️</div>
+						<div class="feature-content">
+							<h3>专业运维</h3>
+							<p>资深运维团队7x24小时服务，故障快速响应，确保业务稳定运行</p>
+						</div>
+					</div>
+					<div class="feature-item">
+						<div class="feature-icon">📈</div>
+						<div class="feature-content">
+							<h3>弹性扩展</h3>
+							<p>根据业务需求灵活调整资源配置，支持秒级扩容缩容</p>
+						</div>
+					</div>
+					<div class="feature-item">
+						<div class="feature-icon">🌏</div>
+						<div class="feature-content">
+							<h3>全球覆盖</h3>
+							<p>覆盖全球主要国家和地区，就近部署，降低网络延迟</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Network Section -->
+		<section class="network" id="network">
+			<div class="container">
+				<div class="section-header">
+					<h2 class="section-title" style="color: white;">全球网络覆盖</h2>
+					<p class="section-subtitle" style="color: rgba(255,255,255,0.9);">遍布全球的数据中心和网络节点</p>
+				</div>
+				<div class="network-stats">
+					<div class="stat-item">
+						<div class="stat-number">31</div>
+						<div class="stat-label">个国家地区</div>
+					</div>
+					<div class="stat-item">
+						<div class="stat-number">400</div>
+						<div class="stat-label">个数据中心</div>
+					</div>
+					<div class="stat-item">
+						<div class="stat-number">99</div>
+						<div class="stat-label">%可用性保证</div>
+					</div>
+					<div class="stat-item">
+						<div class="stat-number">245</div>
+						<div class="stat-label">个网络节点</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA Section -->
+		<section class="cta-section" id="contact">
+			<div class="container">
+				<div class="cta-content">
+					<h2 class="cta-title">立即开始您的云服务之旅</h2>
+					<p class="cta-description">通过Telegram或WhatsApp联系我们，获取专业的云服务器解决方案</p>
+					<div class="cta-buttons">
+						<a href="https://t.me/asbartley" class="btn btn-primary" target="_blank">
+							📱 Telegram联系
+						</a>
+						<a href="https://wa.me/85264644789" class="btn btn-secondary" target="_blank">
+							💬 WhatsApp联系
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="container">
+				<div class="footer-bottom">
+					<p>&copy; 2025 Yingquecloud.com. 保留所有权利。专业的全球云服务器代理商。</p>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
